@@ -1,40 +1,23 @@
 # Elemental Guardians
 
-Independent Android elemental tower-defense game with one actively controlled hero per run. The game design and implementation plan live in [`docs/`](docs/README.md).
-
-> Status: **pre-production**. This repository contains an agent-ready project scaffold, design documents, and an official BMAD 6.12.0 installation; no playable Unity project, deployed backend, or billing integration exists yet.
+Independent Android elemental tower-defense game with one actively fighting hero per run. Product requirements and intended architecture are documented in [`docs/`](docs/README.md).
 
 ## Product at a glance
 
 - Android landscape, single-player, fixed route and 20 deterministic waves per run (target: 10–15 minutes).
 - Four original disciplines: Ember (Glut), Tide (Flut), Ore (Erz), Pulse (Impuls); 11 planned towers including neutral and two-element towers.
-- Exactly one actively controlled hero per run. Kael is free; Lyra and Varek are unlockable via earned fragments or individually purchasable. Advanced heroes intentionally provide gameplay advantages.
+- Exactly one actively fighting hero per run. Kael is free; Lyra and Varek are earnable via fragments or individually purchasable. Advanced heroes intentionally provide gameplay advantages.
 - Local combat simulation and resumable runs; account-bound progression and purchase entitlements managed server-side.
 - Original artwork, names, map, sound, UI, code, balancing and element rules. Do not import or recreate Warcraft III or Element TD assets, code, maps, distinctive artwork, or branding.
 
-## For Codex and BMAD
+## Development
 
-1. Read [`AGENTS.md`](AGENTS.md), then [`docs/README.md`](docs/README.md) and the relevant source-of-truth documents.
-2. Invoke the installed `bmad-help` skill and use the official BMM planning sequence before implementation.
-3. Build the first playable Unity vertical slice before implementing a store: one map, one basic tower, Kael, five fixed waves, combat loop and restart.
+- Codex starts at [`AGENTS.md`](AGENTS.md); process: [`docs/development/workflow.md`](docs/development/workflow.md).
+- Use the installed official BMAD skills for planning and Story creation. Approved BMAD Story → GitHub Issue → Codex feature branch/PR → owner testing and merge.
+- The intended initial gameplay milestone is a Unity vertical slice: one map, one basic tower, Kael, five fixed waves, combat loop and restart. See [`docs/mvp-roadmap.md`](docs/mvp-roadmap.md) for intended milestones, **not a live delivery tracker**.
 
-The project-scoped Codex agent roster mirrors Governance Compiler: Mary (analyst), John (PM), Sally (UX), Winston (architect), Amelia (developer), plus the read-only `repo_explorer` and `rubric_checker` helpers. Its model, reasoning, sandbox, and four-thread settings live in [`.codex/config.toml`](.codex/config.toml).
+## Where to find the current state
 
-## Intended top-level structure
+**This README intentionally contains no implementation status, completed-feature checklist or next-task snapshot.** For the actual delivered functionality inspect code and configuration on the latest `main`; for open and completed work consult [GitHub Issues](https://github.com/HessJulian/Elemental-Guardians/issues) and [Pull Requests](https://github.com/HessJulian/Elemental-Guardians/pulls). Read CI/test results on the relevant commit. An open PR is not yet implemented on `main`; do not infer current state from planning documents, comments or previous Codex conversations.
 
-```text
-AGENTS.md                    Codex repository instructions
-.bmad/                      project-specific BMAD notes (not a fake BMAD installation)
-_bmad/                      official installer-managed BMAD 6.12.0 files
-_bmad-output/               BMAD-generated planning and implementation artifacts
-docs/                       reviewed product and engineering sources of truth
-Assets/                     Unity project assets and C# code (placeholder only)
-Packages/                   Unity package manifest (created by Unity)
-ProjectSettings/            Unity-generated project settings (created by Unity)
-backend/                    account, progression and billing API (placeholder only)
-.github/                    PR template and collaboration conventions
-```
-
-## Status and next step
-
-No engine-generated metadata or package versions are fabricated in this scaffold. The next BMAD step is to create and review the planning artifacts grounded in `docs/`; then create the Unity project with a supported Unity LTS release before gameplay implementation. Never store credentials, service accounts, signing keys or live billing tokens in Git.
+Use Unity Hub to generate or open the actual Unity project when appropriate; treat `Assets/`, `Packages/` and `ProjectSettings/` as engine-managed structure, not proof that a playable game exists. Never store credentials, service accounts, signing keys or live billing tokens in Git.
