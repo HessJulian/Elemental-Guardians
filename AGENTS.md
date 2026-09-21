@@ -27,3 +27,17 @@ Applies to the repository root and descendants unless a nearer `AGENTS.md` suppl
 
 ## Definition of done
 Acceptance criteria met; tests added/updated and executed where possible; no unreviewed scope changes; public documentation updated; security/privacy and mobile performance considered; clearly report unverified steps.
+
+
+## Context and token efficiency
+
+- Treat docs/ as the product source of truth.
+- Read only the documents relevant to the current task.
+- Do not read the entire documentation directory.
+- Do not repeat existing design decisions in chat.
+- Implement one approved story at a time.
+- Prefer targeted file inspection over repository-wide searches.
+- Do not regenerate existing planning documents unless requirements changed.
+- Run targeted tests before broader validation.
+- Keep responses concise: changes, tests, blockers and next steps.
+- Do not skip required security or acceptance checks to save tokens.

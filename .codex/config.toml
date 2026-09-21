@@ -1,0 +1,33 @@
+[agents]
+enabled = true
+max_concurrent_threads_per_session = 4
+default_subagent_model = "gpt-5.6-terra"
+default_subagent_reasoning_effort = "medium"
+
+[agents.bmad_analyst]
+description = "Mary, the read-only BMAD business analyst for evidence-backed requirements and gap analysis."
+config_file = "agents/bmad-analyst.toml"
+
+[agents.bmad_pm]
+description = "John, the read-only BMAD product manager for scope, outcomes, PRDs, and story decisions."
+config_file = "agents/bmad-pm.toml"
+
+[agents.bmad_ux]
+description = "Sally, the read-only BMAD UX designer for user journeys, interaction risks, and accessibility."
+config_file = "agents/bmad-ux.toml"
+
+[agents.bmad_architect]
+description = "Winston, the read-only BMAD architect for consequential architecture and security trade-offs."
+config_file = "agents/bmad-architect.toml"
+
+[agents.bmad_developer]
+description = "Amelia, the BMAD developer for approved implementation tasks with deterministic verification."
+config_file = "agents/bmad-developer.toml"
+
+[agents.repo_explorer]
+description = "Read-only repository explorer for focused code, history, and dependency discovery."
+config_file = "agents/repo-explorer.toml"
+
+[agents.rubric_checker]
+description = "Read-only rubric checker for deterministic spec, acceptance, and evidence validation."
+config_file = "agents/rubric-checker.toml"

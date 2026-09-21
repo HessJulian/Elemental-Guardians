@@ -2,7 +2,7 @@
 
 Independent Android elemental tower-defense game with one actively controlled hero per run. The game design and implementation plan live in [`docs/`](docs/README.md).
 
-> Status: **pre-production**. This repository contains an agent-ready project scaffold and design documents; no playable Unity project, backend, BMAD installation, or billing integration exists yet.
+> Status: **pre-production**. This repository contains an agent-ready project scaffold, design documents, and an official BMAD 6.12.0 installation; no playable Unity project, deployed backend, or billing integration exists yet.
 
 ## Product at a glance
 
@@ -15,17 +15,18 @@ Independent Android elemental tower-defense game with one actively controlled he
 ## For Codex and BMAD
 
 1. Read [`AGENTS.md`](AGENTS.md), then [`docs/README.md`](docs/README.md) and the relevant source-of-truth documents.
-2. Install **official BMAD** in this repository using `npx bmad-method install`, select the BMM module and the supported Codex tool integration from the installer. See [`docs/development/bmad-codex.md`](docs/development/bmad-codex.md). Do not manually invent `_bmad/` or BMAD agents/skills.
-3. Run the installed `bmad-help` skill in Codex to select the appropriate planning workflow. Store generated planning/implementation artifacts in the installer-configured `_bmad-output/` path; keep reviewed product decisions in `docs/`.
-4. Build the first playable Unity vertical slice before implementing a store: one map, one basic tower, Kael, five fixed waves, combat loop and restart.
+2. Invoke the installed `bmad-help` skill and use the official BMM planning sequence before implementation.
+3. Build the first playable Unity vertical slice before implementing a store: one map, one basic tower, Kael, five fixed waves, combat loop and restart.
+
+The project-scoped Codex agent roster mirrors Governance Compiler: Mary (analyst), John (PM), Sally (UX), Winston (architect), Amelia (developer), plus the read-only `repo_explorer` and `rubric_checker` helpers. Its model, reasoning, sandbox, and four-thread settings live in [`.codex/config.toml`](.codex/config.toml).
 
 ## Intended top-level structure
 
 ```text
 AGENTS.md                    Codex repository instructions
 .bmad/                      project-specific BMAD notes (not a fake BMAD installation)
-_bmad/                      created by the official installer, not pre-populated here
-_bmad-output/               BMAD-generated artifacts (once installed)
+_bmad/                      official installer-managed BMAD 6.12.0 files
+_bmad-output/               BMAD-generated planning and implementation artifacts
 docs/                       reviewed product and engineering sources of truth
 Assets/                     Unity project assets and C# code (placeholder only)
 Packages/                   Unity package manifest (created by Unity)
@@ -36,4 +37,4 @@ backend/                    account, progression and billing API (placeholder on
 
 ## Status and next step
 
-No engine-generated metadata or package versions are fabricated in this scaffold. Create the Unity project with a supported Unity LTS release, commit the resulting `Assets/`, `Packages/`, `ProjectSettings/`, and add the corresponding `Assets/AGENTS.md` guidance before gameplay implementation. Never store credentials, service accounts, signing keys or live billing tokens in Git.
+No engine-generated metadata or package versions are fabricated in this scaffold. The next BMAD step is to create and review the planning artifacts grounded in `docs/`; then create the Unity project with a supported Unity LTS release before gameplay implementation. Never store credentials, service accounts, signing keys or live billing tokens in Git.

@@ -19,8 +19,9 @@ This repo intentionally does **not** contain a hand-made BMAD installation. The 
 - BMAD install: https://docs.bmad-method.org/start/install-bmad/
 - OpenAI Codex `AGENTS.md`: https://developers.openai.com/codex/guides/agents-md/ (if docs have moved, search the current official Codex documentation).
 
-## Installation verification (not run by this scaffold)
-- `npx bmad-method install --list-tools` lists available coding integrations.
-- Installer reports completion and selected tool.
-- Codex recognizes and executes `bmad-help`.
-- Official planning artifacts generated, reviewed and traceable to `docs/`.
+## Installation verification
+- Verified on 2026-09-21: official BMAD 6.12.0 installed with `core` + `bmm`, Codex integration and no deprecated shims.
+- `npx bmad-method@6.12.0 install --list-tools` listed `codex` as a supported integration; the installer generated 29 Codex skills under `.agents/skills/`.
+- The installed `bmad-help` catalog and merged configuration resolve successfully; communication and document output are German, while project knowledge points to `docs/`.
+- Project-scoped Codex agents in `.codex/` mirror the Governance Compiler roster and routing. A fresh Codex session is required to load newly installed skills and agent profiles.
+- Official planning artifacts have not yet been generated or approved; they remain the next workflow step.
