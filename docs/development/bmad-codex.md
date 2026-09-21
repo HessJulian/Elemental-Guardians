@@ -1,20 +1,18 @@
 # BMAD + Codex — installation and workflow
 
-This repo intentionally does **not** contain a hand-made BMAD installation. The official installer must create its own files and Codex-compatible skills; a Markdown file named after an agent is not a substitute for an installed BMAD skill.
+## Check the installation instead of trusting a status snapshot
 
-## Installation: status and recovery
+- Inspect the current checkout for the official BMAD configuration under `_bmad/` and the installed Codex skills under `.agents/skills/`. Determine the actual version/modules and configured output paths from those files and the installed tooling; never rely on a dated statement in this document.
+- If BMAD or its Codex integration is actually missing or broken, run the **official** installer from the repository root (`npx bmad-method install`), select the appropriate BMM module and Codex integration, check its output and restart Codex. Do not hand-edit installer-managed BMAD internals or reinstall just because a README describes an earlier state.
+- Locate BMAD-generated PRD, architecture, epics and implementation stories using the installed configuration. Their presence or approval must be checked in the current checkout and linked GitHub Issues/PRs; do not assume either from this guide. Use the configured output directory rather than inventing artifact paths.
 
-- Verified in repository on 2026-09-21: official BMAD 6.12.0 is installed (`core` + `bmm`) with Codex skills under `.agents/skills/`. Do **not** reinstall it merely to create project-specific Issue templates.
-- For a missing/broken local installation, run `npx bmad-method install` from repository root with the BMM module and Codex integration, check installer output, and restart Codex. Do not hand-edit generated `_bmad/` or `.agents/skills/bmad-*` internals.
-- The installer-managed output location governs generated PRD/architecture/epics/story files (normally `_bmad-output/`); do not invent output files or claim a planning artifact is already approved.
+## Planning handoff
 
-## Starting BMAD planning
-
-1. Read root `AGENTS.md`, `docs/development/workflow.md`, and only the relevant product docs. Invoke installed `bmad-help` to determine the required planning/validation sequence for the installed version.
-2. Existing `docs/game-design.md`, `docs/architecture.md`, `docs/data-contracts.md`, `docs/mvp-roadmap.md` are inputs, not automatically an approved BMAD PRD or BMAD architecture artifact.
-3. Once official prerequisites have been satisfied, invoke installed `bmad-create-epics-and-stories` for Epic/Story decomposition. Follow its step-by-step interaction and validation; do not shortcut or overwrite earlier approvals.
-4. Owner reviews decomposition before Issues are marked Ready; publish each reviewed implementation Story as a GitHub Issue according to `docs/development/workflow.md`.
-5. First implementation milestone is the five-wave Unity vertical slice; no premature billing backend before the basic combat loop is playable.
+1. Read `AGENTS.md` and `docs/development/workflow.md`; use only task-relevant product/architecture sections from `docs/`. Invoke the installed `bmad-help` skill to determine the required official planning/validation sequence.
+2. Existing design documents are baseline inputs, **not** evidence of completed BMAD workflows or implemented gameplay. Check which planning artifacts actually exist and which have been approved, then execute only the missing official stages without skipping prerequisites.
+3. When prerequisites are fulfilled, use the installed `bmad-create-epics-and-stories` skill to produce and validate story decomposition. Follow its sequential workflow and user approval gates.
+4. Before publishing Stories as GitHub Issues, search existing Issues by BMAD Story ID and linked file to prevent duplicates. The owner reviews and explicitly makes an Issue Ready. See `docs/development/workflow.md` for implementation and owner-merge rules.
+5. For each subsequent task, determine current feature state from the latest `main` code/configuration and the relevant Issue/PR, not from this installation guide or prior conversations.
 
 ## Official references
 
