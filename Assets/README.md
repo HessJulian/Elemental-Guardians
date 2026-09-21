@@ -1,3 +1,5 @@
-# Unity project placeholder
+# Unity project conventions
 
-No actual Unity project has been generated yet. Create the Unity project with Unity Hub in the **repository root**, then let Unity generate `Assets/`, `Packages/` and `ProjectSettings/` and commit its `.meta` files. Do not create fake `.unity`, `.asset`, `.prefab`, package manifests or `.meta` files. `Assets/Game/` will eventually contain Core, Combat, Towers, Elements, Enemies, Waves, Heroes, Economy, Progression, Commerce, Persistence, UI, Scenes, Tests and Art/Audio as appropriate.
+When initializing or opening the Unity project, use the repository root so Unity owns `Assets/`, `Packages/` and `ProjectSettings/`; commit relevant Unity-generated `.meta` files. Do not fabricate `.unity`, `.asset`, `.prefab`, package manifests or `.meta` files. Prefer gameplay code under `Assets/Game/`, organized into cohesive modules as agreed in the architecture.
+
+**Do not use this file to determine whether Unity, a scene or gameplay already exists.** Inspect the current checkout, Unity project configuration and relevant tests instead. Implement only the approved Issue scope; the current `main` branch is the source of truth for integrated code.
