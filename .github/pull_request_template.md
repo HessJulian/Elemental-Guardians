@@ -1,15 +1,23 @@
-## BMAD story / requirement
-<!-- Link the approved BMAD story and docs requirement; describe any changes to scope. -->
+## Issue / BMAD-Spezifikation
+- GitHub Issue: #<number> (use `Closes #<number>` only for the fully completed, owner-approved story)
+- Reviewed BMAD story: `<repository path or permalink>` (or explain approved bug/technical exception)
+- Scope and acceptance criteria covered:
 
-## Change summary
-<!-- What changed, and why? -->
+## Änderungen
+<!-- Kurz: relevante Komponenten, Entscheidungen, eventuell geänderte Dokumente. -->
 
-## Verification
-<!-- Exact automated test commands/results and Android device/editor version if applicable. Clearly state NOT RUN for missing toolchains. -->
+## Tests und Nachweise
+| Test/Abnahme | Exakter Befehl oder Gerät | Ergebnis / Nachweis |
+| --- | --- | --- |
+|  |  | PASS / FAIL / NOT RUN (Grund) |
 
-## Risk and review
-- [ ] Product/architecture docs updated as necessary
-- [ ] Relevant tests added or updated
-- [ ] Security, economy, entitlement and offline implications reviewed
-- [ ] Original assets and IP constraints respected
-- [ ] No secrets, keystores, service accounts or live purchase tokens committed
+## Review / Risiken
+- [ ] Akzeptanzkriterien geprüft; offene Punkte ausdrücklich genannt
+- [ ] Tests hinzugefügt/aktualisiert; Ergebnisse sind wahrheitsgemäß dokumentiert
+- [ ] Bei Gameplay/UI: Unity-Editor/Android-Abnahme geplant oder durchgeführt
+- [ ] Bei Backend/Economy/IAP: Autorisierung, Idempotenz, Refund-/Offline-Fälle geprüft
+- [ ] Bestehende Produktregeln, Originalität und Dokumentation eingehalten
+- [ ] Keine Secrets, Keystores oder personenbezogenen Daten committet
+
+## Merge-Freigabe
+**Owner only.** Codex öffnet den PR und behebt Review-Befunde, führt aber keinen Merge aus. Story wird erst nach erfolgreicher Abnahme und Merge als Done markiert. Keine automatischen Merge- oder Status-Checks behaupten, solange sie nicht eingerichtet sind.

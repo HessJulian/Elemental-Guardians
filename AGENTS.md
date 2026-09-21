@@ -1,43 +1,26 @@
 # Agent instructions — Elemental Guardians
 
-Applies to the repository root and descendants unless a nearer `AGENTS.md` supplies more specific instructions. Codex loads this standard filename automatically; BMAD's installer-managed agents/skills are separate.
+Applies repository-wide unless a closer `AGENTS.md` provides additional guidance. Official BMAD files in `_bmad/` and installed `bmad-*` skills in `.agents/skills/` are installer-managed: do not edit them to customize this project.
 
-## Mission and sources of truth
-- First read `docs/README.md`, `docs/game-design.md`, `docs/architecture.md`, `docs/mvp-roadmap.md`, and the relevant story in the **official BMAD-generated** implementation artifacts.
-- The reviewed product decisions in `docs/` are binding. If a story conflicts with them, flag the discrepancy; do not silently change the product. Record approved changes with an ADR in `docs/decisions/` and update affected docs.
-- The repo is in PRE-PRODUCTION until Unity and BMAD are actually installed. Do not claim that scaffolding placeholders are runnable.
-- Do not imitate or copy Warcraft III / Element TD assets, source, maps, UI, names, artwork, sounds, or distinctive presentation. Create original expression and escalate IP uncertainty for review.
+## Default entry point
+For Elemental Guardians planning, epic/story generation, GitHub Issue publication, implementation, or PR review, use the **project-owned** `.agents/skills/elemental-guardians-workflow/SKILL.md` as the single routing guide. Select the relevant **installed official BMAD workflow** based on task and completed prerequisite artifacts. Do not require the owner to manually invoke Mary, John, Sally, Winston, or Amelia. The primary Codex session executes the official workflow; configured Codex subagents are optional bounded specialists, not replacements for BMAD step files. Honor all BMAD menus, user approvals and continuation gates; do not simulate an owner's responses.
 
-## BMAD + Codex workflow
-1. If BMAD is not installed, follow `docs/development/bmad-codex.md` and use `npx bmad-method install` in the repository root; select the official BMM module and supported Codex integration. Do not handcraft `_bmad/`, `.agents/skills/bmad-*`, or BMAD internal config.
-2. Invoke the installed `bmad-help` skill to select the next official planning/implementation workflow; use its generated artifacts and story acceptance criteria before coding.
-3. Work one approved, independently testable story at a time. Examine existing files first, write or update tests, implement the minimum change, run relevant checks, update docs and report changes and remaining risks.
-4. Never mark a story done without evidence of passing applicable tests. If Unity, credentials, Android SDK or billing sandbox is unavailable, say which verification was not performed.
-5. Prefer small PRs, meaningful commits and traceability from requirements → story → code/tests. Do not commit generated credentials, account files, keystores, live purchase tokens or personal information.
+`.codex/config.toml` is Codex runtime configuration, **not** a BMAD workflow-customization file. BMAD-owned customization belongs in installer-supported `_bmad/custom/`; project routing lives in the project skill above. Do not assume executing a BMAD skill automatically runs under a separately configured Codex subagent model. Delegate explicitly only when useful and actually supported by the running Codex environment.
 
-## Invariants
-- Android landscape single-player; 20 **fixed** waves per difficulty/map; target 10–15 minutes; exactly one actively fighting hero per run; Kael starts unlocked; Lyra and Varek unlock via earned fragments or individual one-time purchases; advanced heroes deliberately grant gameplay advantage.
-- Four disciplines (Ember/Glut, Tide/Flut, Ore/Erz, Pulse/Impuls); 11 planned tower types. Combat is local; durable currency/ownership and purchase verification are server authoritative.
-- Do not treat client-reported wave completion as cryptographic proof of play. Never grant entitlements from a client receipt alone; verify purchase and transaction state server-side. Ensure idempotent rewards/unlocks.
+## Product and context
+- Product requirements: `docs/game-design.md`; design inputs: `docs/architecture.md` and `docs/data-contracts.md`. Read task-relevant sections. These documents describe intended behavior and decisions, **not whether a feature has been implemented**.
+- Android landscape single-player, one actively fighting hero per run, 20 fixed waves, 10–15-minute target; Kael free; Lyra/Varek earned with fragments or purchased individually and intentionally stronger. Four disciplines, 11 planned towers.
+- Original art/code/maps/names/UI/sounds only; never copy Warcraft III or Element TD assets, maps, source or distinctive presentation.
+- Combat locally simulated; backend owns durable progression, fragments and purchase entitlements. Validate purchases server-side; rewards/unlocks idempotent. Client-reported results alone do not prove play.
 
-## Engineering conventions
-- Unity gameplay C# under `Assets/Game/` once a genuine Unity project is generated; prefer data-driven definitions and pure domain logic where practical. Separate simulation from rendering, persistent profile from resumable run, and purchased entitlements from earned hero ownership.
-- The backend stays in `backend/`; document API and schema changes. No real store products, API keys, Firebase project IDs or Unity package versions are assumed by this scaffold.
-- Add targeted tests for changes to damage, wave progression, rewards, unlocks, save/load and purchase state. Do not fabricate test results or commit Unity-generated `Library/`, `Temp/`, `Obj/`, `Build/` directories.
+## Current state and source of truth
+- **Never infer implementation status from README, docs, roadmaps, BMAD planning files or previous conversations.** Inspect the actual target-branch code/config/tests, relevant GitHub Issues/PRs and actual checks at task time. An open PR is not integrated into `main`.
+- Current code/config is authority for integrated behavior; GitHub Issues and PRs for operational work state; real test logs/checks for verification. Inspect BMAD output completion markers separately to determine BMAD planning progress.
+- Do not maintain duplicate progress lists or embed ephemeral status in permanent docs. Official BMAD sprint tracking, if required, is a derived view reconciled against GitHub, not an independent source of operational truth.
 
-## Definition of done
-Acceptance criteria met; tests added/updated and executed where possible; no unreviewed scope changes; public documentation updated; security/privacy and mobile performance considered; clearly report unverified steps.
-
-
-## Context and token efficiency
-
-- Treat docs/ as the product source of truth.
-- Read only the documents relevant to the current task.
-- Do not read the entire documentation directory.
-- Do not repeat existing design decisions in chat.
-- Implement one approved story at a time.
-- Prefer targeted file inspection over repository-wide searches.
-- Do not regenerate existing planning documents unless requirements changed.
-- Run targeted tests before broader validation.
-- Keep responses concise: changes, tests, blockers and next steps.
-- Do not skip required security or acceptance checks to save tokens.
+## Development workflow and safety
+- `docs/development/workflow.md` and `docs/development/definition-of-done.md` define the project Issue/PR process. BMAD-generated approved story is the implementation specification; GitHub Issue is its operational ticket. Check duplicates before publishing Issues.
+- Implement only one owner-approved Ready Issue per coding session, from latest `main` on `feature/<issue-number>-<slug>` (or `fix/<issue-number>-<slug>`). Tests and acceptance criteria required. Open a PR referencing the Issue and actual test results. **Do not merge, bypass review, mark Done pre-merge or create an implementation PR during a planning-only request.**
+- Keep Unity code under `Assets/Game/` once a real project exists; backend under `backend/`. Never fabricate projects, tooling, passing tests or CI. Do not commit credentials, signing keys, live receipts, personal data or Unity-generated build caches.
+- When approved decisions change, update relevant design documents and an ADR for significant changes; resolve contradictions before implementing.
+- Keep context focused to current Issue, its BMAD story and affected files. Delegate specialists only when they add value, using `.codex/agents/*.toml` role configuration without guessing runtime/model support. Concise closing report: changed files, tests actually run, blockers and PR link.

@@ -1,0 +1,36 @@
+name: "Bug"
+description: "Reproduzierbarer Fehler, unabhängig von einer neuen BMAD-Story"
+title: "[Bug] "
+body:
+  - type: input
+    id: version
+    attributes:
+      label: "Build / Version / Gerät"
+      placeholder: "Commit SHA, Android-Version, Gerät oder Unity-Editor"
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: "Schritte zum Reproduzieren"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Erwartetes Verhalten"
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: "Tatsächliches Verhalten und Belege"
+      placeholder: "Fehler, Logauszug, Screenshot ohne persönliche Daten"
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: "Betroffener Bereich / Regressionstests"
+    validations:
+      required: false

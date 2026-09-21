@@ -1,0 +1,65 @@
+name: "BMAD Story"
+description: "Implementierbare, freigegebene Story aus einem BMAD-Epic"
+title: "[Story] "
+body:
+  - type: markdown
+    attributes:
+      value: "BMAD-Story ist die Spezifikation. GitHub Issue verwaltet Status und Umsetzung. Vor Freigabe BMAD-Story und Akzeptanzkriterien abgleichen."
+  - type: input
+    id: story-key
+    attributes:
+      label: "BMAD Story-ID / Epic"
+      placeholder: "z. B. 1.2 / Epic 1 (keine erfundene GitHub-Issue-Nummer)"
+    validations:
+      required: true
+  - type: input
+    id: story-reference
+    attributes:
+      label: "BMAD-Story-Datei (Repository-Pfad oder Permalink)"
+      placeholder: "_bmad-output/implementation-artifacts/...md"
+      description: "Verlinke die versionierte, überprüfte Spezifikation; kein privater lokaler Dateipfad."
+    validations:
+      required: true
+  - type: textarea
+    id: user-value
+    attributes:
+      label: "User Story / erwarteter Nutzen"
+      description: "Was soll für Spieler oder Entwicklung überprüfbar möglich sein?"
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: "Akzeptanzkriterien"
+      description: "Nummeriert, eindeutig, beobachtbar; deckungsgleich mit der BMAD-Story."
+      placeholder: "AC1: ...\nAC2: ..."
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: "Abhängigkeiten / Scope-Grenzen"
+      placeholder: "Blockiert durch #...; bewusst nicht Teil dieser Story: ..."
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: "Test- und Abnahmeplan"
+      placeholder: "EditMode/PlayMode/Android/Backend; erwartetes Verhalten; manuelle Abnahme falls nötig"
+    validations:
+      required: true
+  - type: textarea
+    id: risk
+    attributes:
+      label: "Risiken / offene Annahmen"
+      description: "Insbesondere Monetarisierung, Sicherheit, Performance, Originalität oder fehlende Toolchain."
+    validations:
+      required: false
+  - type: checkboxes
+    id: ready
+    attributes:
+      label: "Readiness (Owner setzt Ready nach Prüfung)"
+      options:
+        - label: "Story ist geprüft, Abhängigkeiten und Akzeptanzkriterien sind klar (kein automatisches Ready)."
+          required: false
