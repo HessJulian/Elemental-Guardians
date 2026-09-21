@@ -1,33 +1,39 @@
+# Codex runtime configuration. This does NOT customize BMAD step files.
+# Project routing: AGENTS.md -> .agents/skills/elemental-guardians-workflow/SKILL.md
+# BMAD team customization: _bmad/custom/ ; official upstream: _bmad/
+# Role-specific model/reasoning/sandbox settings live in .codex/agents/*.toml.
+# Roles run ONLY when the parent Codex session explicitly delegates a bounded task.
+
 [agents]
 enabled = true
-max_concurrent_threads_per_session = 4
+max_concurrent_threads_per_session = 2
 default_subagent_model = "gpt-5.6-terra"
 default_subagent_reasoning_effort = "medium"
 
 [agents.bmad_analyst]
-description = "Mary, the read-only BMAD business analyst for evidence-backed requirements and gap analysis."
+description = "Optional read-only requirements gap analyst (Mary); not an automatic BMAD workflow executor."
 config_file = "agents/bmad-analyst.toml"
 
 [agents.bmad_pm]
-description = "John, the read-only BMAD product manager for scope, outcomes, PRDs, and story decisions."
+description = "Optional read-only product and story reviewer (John); not an automatic BMAD workflow executor."
 config_file = "agents/bmad-pm.toml"
 
 [agents.bmad_ux]
-description = "Sally, the read-only BMAD UX designer for user journeys, interaction risks, and accessibility."
+description = "Optional read-only mobile UX and accessibility reviewer (Sally)."
 config_file = "agents/bmad-ux.toml"
 
 [agents.bmad_architect]
-description = "Winston, the read-only BMAD architect for consequential architecture and security trade-offs."
+description = "Optional read-only architecture and security reviewer (Winston); reserve for high-impact decisions."
 config_file = "agents/bmad-architect.toml"
 
 [agents.bmad_developer]
-description = "Amelia, the BMAD developer for approved implementation tasks with deterministic verification."
+description = "Optional bounded coding delegate (Amelia) for an owner-approved implementation issue; parent owns official BMAD workflow state and PR."
 config_file = "agents/bmad-developer.toml"
 
 [agents.repo_explorer]
-description = "Read-only repository explorer for focused code, history, and dependency discovery."
+description = "Optional low-cost read-only focused source and dependency explorer."
 config_file = "agents/repo-explorer.toml"
 
 [agents.rubric_checker]
-description = "Read-only rubric checker for deterministic spec, acceptance, and evidence validation."
+description = "Optional low-cost read-only independent check of acceptance criteria against evidence."
 config_file = "agents/rubric-checker.toml"
