@@ -6,11 +6,14 @@
 | [`architecture.md`](architecture.md) | Proposed client/backend architecture and trust boundaries |
 | [`data-contracts.md`](data-contracts.md) | Domain models, API contract and persistence invariants |
 | [`mvp-roadmap.md`](mvp-roadmap.md) | Vertical slice, milestones and acceptance criteria |
-| [`development/bmad-codex.md`](development/bmad-codex.md) | Official BMAD installation and Codex workflow |
+| [`development/bmad-codex.md`](development/bmad-codex.md) | BMAD installation/status and installed Codex workflow |
+| [`development/workflow.md`](development/workflow.md) | BMAD story → GitHub Issue → Codex PR → human merge |
+| [`development/definition-of-done.md`](development/definition-of-done.md) | Explicit Ready and Done gates |
+| [`development/testing-strategy.md`](development/testing-strategy.md) | Tests and truthful PR verification by change type |
 | [`decisions/0001-engine-and-authority.md`](decisions/0001-engine-and-authority.md) | First proposed architecture decision |
 
-**Status:** Product baseline approved from the conversation; implementation details are proposed and should be validated during BMAD architecture review. Official BMAD 6.12.0 (`core` + `bmm`, Codex integration) is installed, but no planning artifacts have been approved yet. Balancing numbers, shop prices and duration are hypotheses, not proven outcomes. No Unity project, cloud infrastructure or Google Play catalog has been deployed.
+**Status:** Reviewed product baseline exists; technical choices require BMAD architecture validation. BMAD 6.12.0 (`core` + `bmm`, Codex integration) is installed in the repository; no official planning artifacts or implementation Stories have yet been approved. No playable Unity project, deployed backend, enforced branch protection or game CI checks exist yet. Prices, balance and duration remain hypotheses.
 
-**Language:** Documents are in English for tool and agent portability; product names include the German design vocabulary. Player-facing language/localization has not yet been decided.
+**Handoff:** Run installed `bmad-help`, complete prerequisites, then use `bmad-create-epics-and-stories`; review the resulting Stories before creating GitHub Issues. New Issues begin Backlog, Codex only works on owner-approved Ready Issues, and only the owner merges PRs after testing.
 
-**Change control:** BMAD discovery/PRD/architecture/epics should cite these documents. When a BMAD review approves changes, synchronize the affected source document and create an ADR for significant technical/product decisions. Do not allow generated planning artifacts and reviewed documentation to drift apart.
+**Language:** Project docs are in English for tool portability; these workflow notes are in German. End-user localization remains undecided.

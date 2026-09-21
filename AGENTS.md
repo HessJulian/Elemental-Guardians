@@ -1,43 +1,27 @@
 # Agent instructions — Elemental Guardians
 
-Applies to the repository root and descendants unless a nearer `AGENTS.md` supplies more specific instructions. Codex loads this standard filename automatically; BMAD's installer-managed agents/skills are separate.
+Applies repository-wide unless a closer `AGENTS.md` provides additional guidance. Official BMAD skills live under `.agents/skills/`; do not modify installer-managed files to customize this project's process.
 
-## Mission and sources of truth
-- First read `docs/README.md`, `docs/game-design.md`, `docs/architecture.md`, `docs/mvp-roadmap.md`, and the relevant story in the **official BMAD-generated** implementation artifacts.
-- The reviewed product decisions in `docs/` are binding. If a story conflicts with them, flag the discrepancy; do not silently change the product. Record approved changes with an ADR in `docs/decisions/` and update affected docs.
-- The repo is in PRE-PRODUCTION until Unity and BMAD are actually installed. Do not claim that scaffolding placeholders are runnable.
-- Do not imitate or copy Warcraft III / Element TD assets, source, maps, UI, names, artwork, sounds, or distinctive presentation. Create original expression and escalate IP uncertainty for review.
+## Product and context
+- Reviewed product baseline: `docs/game-design.md`; technical baseline: `docs/architecture.md` and `docs/data-contracts.md`. Read the relevant sections only. `docs/README.md` is the documentation index.
+- Android landscape single-player, one actively fighting hero per run, 20 fixed waves, 10–15-minute target; Kael is free; Lyra/Varek can be earned with fragments or purchased individually and intentionally provide gameplay advantages. Four disciplines, 11 planned towers.
+- Use original artwork, code, maps, names, UI and sounds. Never copy Warcraft III or Element TD assets, maps, source, branding or distinctive presentation.
+- Combat runs locally. The backend is authoritative for durable progression, fragments and purchase entitlements; validate purchases server-side and make rewards/unlocks idempotent. Client-reported combat results are not proof of legitimate play.
 
-## BMAD + Codex workflow
-1. If BMAD is not installed, follow `docs/development/bmad-codex.md` and use `npx bmad-method install` in the repository root; select the official BMM module and supported Codex integration. Do not handcraft `_bmad/`, `.agents/skills/bmad-*`, or BMAD internal config.
-2. Invoke the installed `bmad-help` skill to select the next official planning/implementation workflow; use its generated artifacts and story acceptance criteria before coding.
-3. Work one approved, independently testable story at a time. Examine existing files first, write or update tests, implement the minimum change, run relevant checks, update docs and report changes and remaining risks.
-4. Never mark a story done without evidence of passing applicable tests. If Unity, credentials, Android SDK or billing sandbox is unavailable, say which verification was not performed.
-5. Prefer small PRs, meaningful commits and traceability from requirements → story → code/tests. Do not commit generated credentials, account files, keystores, live purchase tokens or personal information.
+## BMAD planning → GitHub Issues → Codex → human merge
+- Read `docs/development/workflow.md` and `docs/development/definition-of-done.md` for the project-specific process. Follow the **installed official BMAD workflow** for planning; do not replace it with hand-written pseudo-BMAD commands or edit installer-managed skills.
+- Existing reviewed docs are inputs. PRD, architecture and epics/stories produced by BMAD remain in the configured BMAD output location. A **reviewed BMAD story is the implementation specification**; its GitHub Issue is the operational ticket with matching acceptance criteria and a link to the versioned story file. Do not create duplicate Issues on reruns.
+- Before coding: choose exactly one **owner-approved Ready** Issue with a linked BMAD story (or an approved isolated bug/technical task). Verify prerequisites and scope. Create `feature/<issue-number>-<slug>` (or `fix/<issue-number>-<slug>`) from the latest `main`. Never commit gameplay directly to `main`.
+- Implement acceptance criteria and targeted tests; open a PR against `main`, reference the Issue with `Closes #<number>`, include actual test evidence and limitations. **Never merge your own PR, bypass checks or close a story as Done before the owner merges after testing.** Do not create or merge PRs during the story-generation-only task.
+- GitHub Issue/PR is the operational status record: Backlog → Ready (owner approval) → In Progress → In Review → Done (after merge). Keep BMAD sprint tracking consistent with actual state; do not assert sync was automated if it was manual.
 
-## Invariants
-- Android landscape single-player; 20 **fixed** waves per difficulty/map; target 10–15 minutes; exactly one actively fighting hero per run; Kael starts unlocked; Lyra and Varek unlock via earned fragments or individual one-time purchases; advanced heroes deliberately grant gameplay advantage.
-- Four disciplines (Ember/Glut, Tide/Flut, Ore/Erz, Pulse/Impuls); 11 planned tower types. Combat is local; durable currency/ownership and purchase verification are server authoritative.
-- Do not treat client-reported wave completion as cryptographic proof of play. Never grant entitlements from a client receipt alone; verify purchase and transaction state server-side. Ensure idempotent rewards/unlocks.
+## Token-efficient engineering
+- One story per implementation session. Read `AGENTS.md`, that Issue, its specific BMAD story, and only task-relevant source/docs. Do not repeatedly load the entire PRD/architecture or regenerate accepted documents.
+- Unity code under `Assets/Game/` once a real Unity project exists; backend under `backend/`. Keep simulation and rendering, run saves and account state, earned ownership and paid entitlements separated.
+- Never fabricate a working Unity project, installed SDK, CI checks or passing tests. State which commands/devices were actually tested. Add focused tests for damage, wave state, saves, rewards, unlocks and billing as appropriate.
+- No secrets, service accounts, keystores, live receipts, personal data or Unity-generated `Library/`, `Temp/`, `Obj/` and `Build/` directories in Git.
+- Report concisely: changed files, tests run and results, blockers, PR URL. Never reduce necessary security or acceptance checks to save tokens.
 
-## Engineering conventions
-- Unity gameplay C# under `Assets/Game/` once a genuine Unity project is generated; prefer data-driven definitions and pure domain logic where practical. Separate simulation from rendering, persistent profile from resumable run, and purchased entitlements from earned hero ownership.
-- The backend stays in `backend/`; document API and schema changes. No real store products, API keys, Firebase project IDs or Unity package versions are assumed by this scaffold.
-- Add targeted tests for changes to damage, wave progression, rewards, unlocks, save/load and purchase state. Do not fabricate test results or commit Unity-generated `Library/`, `Temp/`, `Obj/`, `Build/` directories.
-
-## Definition of done
-Acceptance criteria met; tests added/updated and executed where possible; no unreviewed scope changes; public documentation updated; security/privacy and mobile performance considered; clearly report unverified steps.
-
-
-## Context and token efficiency
-
-- Treat docs/ as the product source of truth.
-- Read only the documents relevant to the current task.
-- Do not read the entire documentation directory.
-- Do not repeat existing design decisions in chat.
-- Implement one approved story at a time.
-- Prefer targeted file inspection over repository-wide searches.
-- Do not regenerate existing planning documents unless requirements changed.
-- Run targeted tests before broader validation.
-- Keep responses concise: changes, tests, blockers and next steps.
-- Do not skip required security or acceptance checks to save tokens.
+## Change control
+- If a story conflicts with reviewed product or technical decisions, raise it before changing scope. Approved decisions update affected docs and, where significant, an ADR in `docs/decisions/`.
+- Follow `docs/development/testing-strategy.md`; do not claim a green GitHub status check unless a workflow actually exists and has run.

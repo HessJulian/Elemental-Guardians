@@ -1,0 +1,28 @@
+name: "Technische Aufgabe"
+description: "Isolierte technische Arbeit (Tooling, Build, Refactoring oder Wartung)"
+title: "[Tech] "
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: "Ziel und Begründung"
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: "In Scope / Out of Scope"
+    validations:
+      required: true
+  - type: textarea
+    id: ac
+    attributes:
+      label: "Messbare Abnahmekriterien"
+    validations:
+      required: true
+  - type: textarea
+    id: test
+    attributes:
+      label: "Verifikation und Abhängigkeiten"
+    validations:
+      required: true
